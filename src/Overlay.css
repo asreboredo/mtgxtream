@@ -1,0 +1,163 @@
+@import url('https://fonts.cdnfonts.com/css/stillhouse');
+
+.overlay-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    overflow: hidden;
+
+    color: white;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: 'Beleren', sans-serif;
+    textf-rendering: optimizeLegibility;
+    --font-size-adjust: 0.5;
+}
+
+.overlay-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, .99);
+    height: 100px;
+    border-bottom: 2px solid orangered;
+}
+
+
+.player {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.player-data {
+    height: 100%;
+    width: 500px;
+    padding: 10px 15px;
+}
+
+.player-tracking {
+    display: flex;
+    height: 100%;
+    //width: 60px;
+}
+
+.player-data-top {
+    font-size: 45px;
+}
+
+.player-deck {
+    color: orangered;
+}
+
+.player-record {
+    font-size: 18px;
+    letter-spacing: 5px;
+}
+
+.divider {
+    color: rgba(119, 116, 116, 0.99);;
+}
+
+
+.player-play-draw {
+    padding: 10px;
+    font-size: 21px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    background: rgba(51, 43, 43, 0.99)
+}
+
+.player-data-bottom {
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.player-life-total {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+    font-size: 70px;
+    width: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: rgba(119, 116, 116, 0.99);
+    text-shadow: 4px 2px 1px rgba(255,255,255,0.6);
+}
+
+
+
+
+.match-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+    height: 100%;
+    background: rgba(51, 43, 43, 0.99)
+}
+
+.round-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+
+.timer {
+    font-size: 45px;
+}
+
+.round {
+    //color: rgba(119, 116, 116, 0.99);;
+    font-size: 35px;
+}
+
+.player-wins {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 100%;
+    font-size: 50px;
+    color: orangered;
+    padding: 5px;
+}
+
+
+
+
+.overlay-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    background: rgba(0, 0, 0, .99);
+    height: 60px;
+    border-top: 4px solid orangered;
+}
+
+.location {
+    display: flex;
+    font-size: 20px;
+    color: rgba(119, 116, 116, 0.99);
+}
+
+.logo {
+    border-radius: 100%;
+    padding: 20px;
+    background: white;
+    margin-right: -15px;
+    margin-bottom: 48px;
+    border-top: 5px solid orangered;
+    border-left: 8px solid orangered;
+}
