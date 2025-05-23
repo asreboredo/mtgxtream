@@ -2,6 +2,8 @@ import "./PlayerMatchControls.css";
 import {Player} from "../../../../../types/Player.ts";
 import {PlayerGameWin, useMatchData} from "../../../../../hooks/useMatchData.tsx";
 import {useCallback, useMemo} from "react";
+import {Loss} from "../../../../common/Loss.tsx";
+import {Win} from "../../../../common/Win.tsx";
 
 type Props = {
     player: Player;
@@ -27,7 +29,8 @@ function PlayerMatchControls(props: Props) {
             {coalescedPlayerGameWins?.map((pw, index) =>
                 <button
                     onClick={() => onClicky(index, props.player.id)}>
-                    {pw === 'unplayed' ? `G${index + 1}` : pw === props.player.id ? `W${index + 1}` : `L${index + 1}`}
+                    {pw === 'unplayed' ? `G${index + 1}` : pw === props.player.id ?
+                        <Win></Win> : <Loss></Loss>}
                 </button>)}
         </div>
     </div>)

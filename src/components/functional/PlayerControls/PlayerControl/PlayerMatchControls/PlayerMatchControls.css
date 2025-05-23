@@ -24,6 +24,7 @@
 
 .game-win-indicators > button {
     padding: 5px 8px;
+    height: 34px;
     border: 1px solid white;
     text-align: center;
     display: flex;
