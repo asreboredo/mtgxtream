@@ -1,9 +1,9 @@
 import './App.css'
-import PlayerControls from "./components/PlayerControls/PlayerControls.tsx";
+import PlayerControls from "./components/functional/PlayerControls/PlayerControls.tsx";
 import {HashRouter, Route, Routes} from "react-router-dom";
-import Overlay from "./components/Overlay/Overlay.tsx";
 import {StrictMode} from "react";
 import {FirebaseAppContextProvider} from "./contexts/firebase/FirebaseAppContextProvider.tsx";
+import Overlay from "./components/functional/Overlay/Overlay.tsx";
 
 function App() {
 

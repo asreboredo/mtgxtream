@@ -1,5 +1,7 @@
 import "./PlayerControl.css";
-import {Player} from "../../../types/Player.ts";
+import {Player} from "../../../../types/Player.ts";
+import {TopRightIndicator} from "../../../common/TopRightIndicator.tsx";
+import {TopLeftIndicator} from "../../../common/TopLeftIndicator.tsx";
 
 
 const updatePlayerWins = (p: Player, change: number): Player => ({...p, wins: p.wins + change})
@@ -22,7 +24,9 @@ function PlayerControl(props: Props) {
 
     return (
         <div className={`player player-${position}`}>
-            <div className={"name"}>{player.name}</div>
+            <div className={"name"}>{player.name} {position === 'right' ? <TopRightIndicator></TopRightIndicator> :
+                <TopLeftIndicator></TopLeftIndicator>}
+            </div>
             <div className={"wins"}>
                 <button className={"control-sm"}
                         onClick={() => updatePlayer(player, (p) => updatePlayerWins(p, -1))}>

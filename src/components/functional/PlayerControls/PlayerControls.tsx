@@ -1,5 +1,5 @@
 import "./PlayerControls.css";
-import {useMatchData} from "../../hooks/useMatchData.tsx";
+import {useMatchData} from "../../../hooks/useMatchData.tsx";
 import PlayerControl from "./PlayerControl/PlayerControl.tsx";
 
 function PlayerControls() {

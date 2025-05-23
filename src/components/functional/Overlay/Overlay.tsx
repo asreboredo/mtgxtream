@@ -1,6 +1,6 @@
 import "./Overlay.css";
-import lemur from "../../assets/lemur.png"
-import {useMatchData} from "../../hooks/useMatchData.tsx";
+import lemur from "../../../assets/lemur.png"
+import {useMatchData} from "../../../hooks/useMatchData.tsx";
 
 
 function Overlay() {
