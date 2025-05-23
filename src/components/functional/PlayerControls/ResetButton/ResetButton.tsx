@@ -1,5 +1,6 @@
 import "./ResetButton.css";
 import {useMatchData} from "../../../../hooks/useMatchData.tsx";
+import {Reset} from "../../../common/Reset.tsx";
 
 
 function ResetButton() {
@@ -9,9 +10,7 @@ function ResetButton() {
     return (
         <div className={"reset-container"}>
             <button onClick={resetLifeTotals} className={"reset-button"}>
-                <span>RESET LIFE TOTALS</span>
-                <span> |</span>
-                <span className={"inverse"}>RESET LIFE TOTALS</span>
+                <Reset></Reset>
             </button>
         </div>
     );

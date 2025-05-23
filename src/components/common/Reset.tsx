@@ -1,5 +1,5 @@
-export const Loss = () => {
-    return (<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+export const Reset = () => {
+    return (<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 36 36">
         <path fill="currentColor"
               d="M32.84 15.72a1 1 0 1 0-2 .29a13 13 0 0 1 .16 1.93A13 13 0 0 1 8.7 27h5.36a1 1 0 0 0 0-2h-9v9a1 1 0 1 0 2 0v-5.8a15 15 0 0 0 25.78-12.48"
               className="clr-i-outline clr-i-outline-path-1"/>
