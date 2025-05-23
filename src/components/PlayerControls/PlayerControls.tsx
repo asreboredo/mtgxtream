@@ -1,8 +1,8 @@
-import "./Controls.css";
-import {useMatchData} from "./hooks/useMatchData.tsx";
+import "./PlayerControls.css";
+import {useMatchData} from "../../hooks/useMatchData.tsx";
 
 
-function Controls() {
+function PlayerControls() {
     const {matchData, updatePlayer} = useMatchData();
     const {player1, player2} = matchData;
 
@@ -62,4 +62,4 @@ function Controls() {
     );
 }
 
-export default Controls;
+export default PlayerControls;

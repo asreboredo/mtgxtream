@@ -1,7 +1,7 @@
 import './App.css'
-import Controls from "./Controls.tsx";
+import PlayerControls from "./components/PlayerControls/PlayerControls.tsx";
 import {HashRouter, Route, Routes} from "react-router-dom";
-import Overlay from "./Overlay.tsx";
+import Overlay from "./components/Overlay/Overlay.tsx";
 import {StrictMode} from "react";
 import {FirebaseAppContextProvider} from "./contexts/firebase/FirebaseAppContextProvider.tsx";
 
@@ -15,7 +15,7 @@ function App() {
                         <Routes>
                             <Route path={"/"} element={<Overlay/>}></Route>
                             <Route path={"/overlay"} element={<Overlay/>}></Route>
-                            <Route path={"/controls"} element={<Controls/>}></Route>
+                            <Route path={"/player-controls"} element={<PlayerControls/>}></Route>
                         </Routes>
                     </HashRouter>
                 </FirebaseAppContextProvider>
