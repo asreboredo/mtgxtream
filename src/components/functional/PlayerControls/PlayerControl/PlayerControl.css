@@ -16,7 +16,7 @@
     justify-content: center;
     flex-direction: column !important;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 .player-left {
@@ -28,27 +28,30 @@
     /*background: brown;*/
 }
 
-.wins {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    gap: 25px;
-}
-
 .life {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    height: 80%;
+    width: 100%;
+}
+
+.life-number {
+    font-size: 10rem;
+    padding-top: 20%;
 }
 
 .control {
-    font-size: 5rem;
+    font-size: 8rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
 }
 
 .control-sm {
-    font-size: 3rem;
+    font-size: 6rem;
 }
 
 button {
