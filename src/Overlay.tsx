@@ -56,8 +56,9 @@ function Overlay() {
                 </div>
             </div>
             <div className={"overlay-bottom"}>
-                <div className={"location"}>O Cascabullo, Ourense</div>
-                <div className={"logo"}><img src={lemur} height={90} width={100} alt=""/></div>
+                <div className={'spacer'}>O Cascabullo</div>
+                <div className={"logo"}><img src={lemur} alt=""/></div>
+                <div className={'spacer'}></div>
             </div>
         </div>
     )

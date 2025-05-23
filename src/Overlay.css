@@ -42,7 +42,6 @@
 .player-tracking {
     display: flex;
     height: 100%;
-    //width: 60px;
 }
 
 .player-data-top {
@@ -89,10 +88,8 @@
     padding-left: 20px;
     padding-right: 20px;
     background: rgba(119, 116, 116, 0.99);
-    text-shadow: 4px 2px 1px rgba(255,255,255,0.6);
+    text-shadow: 4px 2px 1px rgba(255, 255, 255, 0.6);
 }
-
-
 
 
 .match-data {
@@ -117,7 +114,6 @@
 }
 
 .round {
-    //color: rgba(119, 116, 116, 0.99);;
     font-size: 35px;
 }
 
@@ -132,8 +128,6 @@
     color: orangered;
     padding: 5px;
 }
-
-
 
 
 .overlay-bottom {
@@ -153,11 +147,22 @@
 }
 
 .logo {
+    height: 50px;
+    width: 50px;
     border-radius: 100%;
     padding: 20px;
     background: white;
-    margin-right: -15px;
-    margin-bottom: 48px;
-    border-top: 5px solid orangered;
-    border-left: 8px solid orangered;
+    border: 3px solid orangered;
+}
+
+.logo > img {
+    height: 60px;
+    width: 70px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.spacer {
+    width: 30%;
+    font-size: 24px;
 }
