@@ -10,12 +10,14 @@ const MatchDataReferenceRoutes = {
     PLAYER_1: `${MATCH_DATA_REFERENCE}/player1`,
     PLAYER_2: `${MATCH_DATA_REFERENCE}/player2`,
     ROUND: `${MATCH_DATA_REFERENCE}/round`,
+    PLAYER_GAME_WINS: `${MATCH_DATA_REFERENCE}/playerGameWins`,
 };
 
 type MatchDataReferences = {
     player1: DatabaseReference;
     player2: DatabaseReference;
     round: DatabaseReference;
+    playerGameWins: DatabaseReference;
 };
 
 type MatchDataKey = keyof MatchDataReferences;
@@ -23,7 +25,8 @@ export type MatchDataPlayerKey = "player1" | "player2";
 
 type MatchDataAction =
     | { type: 'SET_PLAYER_DATA'; payload: { key: MatchDataKey; data: Player } }
-    | { type: 'SET_ROUND_DATA'; payload: string };
+    | { type: 'SET_ROUND_DATA'; payload: string }
+    | { type: 'PLAYER_GAME_WINS'; payload: MatchDataPlayerKey[] };
 
 type MatchDataState = MatchData;
 
@@ -33,6 +36,8 @@ const matchDataReducer = (state: MatchDataState, action: MatchDataAction): Match
             return {...state, [action.payload.key]: action.payload.data};
         case 'SET_ROUND_DATA':
             return {...state, round: action.payload};
+        case 'PLAYER_GAME_WINS':
+            return {...state, playerGameWins: action.payload};
         default:
             return state;
     }
@@ -58,6 +63,13 @@ export const useMatchData = () => {
         const roundData = snapshot.val();
         if (roundData) {
             dispatch({type: 'SET_ROUND_DATA', payload: roundData});
+        }
+    }, []);
+
+    const onPlayerGameWinsSnapshot = useCallback((snapshot: DataSnapshot) => {
+        const roundData = snapshot.val();
+        if (roundData) {
+            dispatch({type: 'PLAYER_GAME_WINS', payload: roundData});
         }
     }, []);
 
@@ -88,10 +100,12 @@ export const useMatchData = () => {
         const p1ref = ref(db, MatchDataReferenceRoutes.PLAYER_1);
         const p2ref = ref(db, MatchDataReferenceRoutes.PLAYER_2);
         const roundRef = ref(db, MatchDataReferenceRoutes.ROUND);
+        const playerWinsRef = ref(db, MatchDataReferenceRoutes.PLAYER_GAME_WINS);
         setMatchDataRefs({
             player1: p1ref,
             player2: p2ref,
             round: roundRef,
+            playerGameWins: playerWinsRef
         });
     }, [db]);
 
@@ -100,18 +114,20 @@ export const useMatchData = () => {
             return;
         }
 
-        const {player1, player2, round} = matchDataRefs;
+        const {player1, player2, round, playerGameWins} = matchDataRefs;
 
         const unsubscribePlayer1 = onValue(player1, (snapshot) => onPlayerSnapshot("player1", snapshot));
         const unsubscribePlayer2 = onValue(player2, (snapshot) => onPlayerSnapshot("player2", snapshot));
         const unsubscribeRound = onValue(round, onRoundSnapshot);
+        const unsubscribeGameWins = onValue(playerGameWins, onPlayerGameWinsSnapshot);
 
         return () => {
             unsubscribePlayer1();
             unsubscribePlayer2();
             unsubscribeRound();
+            unsubscribeGameWins();
         };
-    }, [matchDataRefs, onPlayerSnapshot, onRoundSnapshot]);
+    }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot]);
 
     return {matchData, updatePlayer, resetLifeTotals};
 };

@@ -31,14 +31,16 @@ function Overlay() {
                     <div className={"player-tracking"}>
                         {/*<div className={"player-play-draw"}>DRAW</div>*/}
                         <div className={"player-life-total"}>{player1.life}</div>
-                        <div className={"player-wins"}>{player1.wins}</div>
+                        <div
+                            className={"player-wins"}>{matchData.playerGameWins?.filter(pid => pid === player1.id).length || 0}</div>
                     </div>
                     <div className={"round-timer"}>
                         {/*<div className={"timer"}>45:54</div>*/}
                         <div className={"round"}>{round}</div>
                     </div>
                     <div className={"player-tracking"}>
-                        <div className={"player-wins"}>{player2.wins}</div>
+                        <div
+                            className={"player-wins"}>{matchData.playerGameWins?.filter(pid => pid === player2.id).length || 0}</div>
                         <div className={"player-life-total"}>{player2.life}</div>
                         {/*<div className={"player-play-draw"}>PLAY</div>*/}
                     </div>
