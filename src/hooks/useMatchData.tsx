@@ -18,7 +18,8 @@ type MatchDataReferences = {
     round: DatabaseReference;
 };
 
-type MatchDataKey = keyof MatchData;
+type MatchDataKey = keyof MatchDataReferences;
+export type MatchDataPlayerKey = "player1" | "player2";
 
 type MatchDataAction =
     | { type: 'SET_PLAYER_DATA'; payload: { key: MatchDataKey; data: Player } }
@@ -56,13 +57,13 @@ export const useMatchData = () => {
         }
     }, []);
 
-    const updatePlayer = useCallback((playerId: MatchDataKey, newValue: Player) => {
-        if (!db || !matchDataRefs || !matchDataRefs[playerId]) {
+    const updatePlayer = useCallback((playerId: Player, neValueFn: (p: Player) => Player) => {
+        if (!db || !matchDataRefs || !matchDataRefs[playerId.id]) {
             return;
         }
 
-        set(matchDataRefs[playerId], newValue);
-    }, [db, matchDataRefs]);
+        set(matchDataRefs[playerId.id], neValueFn(matchData[playerId.id]!));
+    }, [db, matchData, matchDataRefs]);
 
     useEffect(() => {
         if (!db) {
