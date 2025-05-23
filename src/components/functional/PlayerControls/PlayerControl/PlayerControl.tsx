@@ -32,11 +32,11 @@ function PlayerControl(props: Props) {
                 </div>
                 <div className={"life"}>
                     <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, -1))}>
-                        -
+                        <span className={'fill'}></span> - <span></span>
                     </button>
                     <div className={'life-number'}>{player.life}</div>
                     <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, 1))}>
-                        +
+                        <span className={'fill'}></span> + <span></span>
                     </button>
                 </div>
             </div>

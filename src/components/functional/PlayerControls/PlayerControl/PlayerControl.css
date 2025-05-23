@@ -37,16 +37,25 @@
 }
 
 .life-number {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 10rem;
     padding-top: 20%;
 }
 
+.fill {
+    height: 40%;
+}
+
 .control {
-    font-size: 8rem;
+    font-size: 2rem;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 40%;
 }
 
