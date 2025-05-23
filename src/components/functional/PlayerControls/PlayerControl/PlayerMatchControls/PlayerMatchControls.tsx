@@ -1,7 +1,7 @@
 import "./PlayerMatchControls.css";
 import {Player} from "../../../../../types/Player.ts";
-import {useMatchData} from "../../../../../hooks/useMatchData.tsx";
-import {useMemo} from "react";
+import {PlayerGameWin, useMatchData} from "../../../../../hooks/useMatchData.tsx";
+import {useCallback, useMemo} from "react";
 
 type Props = {
     player: Player;
@@ -9,15 +9,26 @@ type Props = {
 }
 
 function PlayerMatchControls(props: Props) {
-    const {matchData} = useMatchData();
+    const {matchData, updatePlayerWins} = useMatchData();
     const {playerGameWins} = matchData;
 
-    const coalescedPlayerGameWins = useMemo(() => playerGameWins || [null, null, null], [playerGameWins])
+    const coalescedPlayerGameWins: PlayerGameWin[] = useMemo(() => playerGameWins || ["unplayed", "unplayed", "unplayed"], [playerGameWins])
+
+    const onClicky = useCallback((index: number, value: PlayerGameWin) => {
+        const wihResetVal = coalescedPlayerGameWins[index] === value ? 'unplayed' : value;
+        updatePlayerWins({
+            ...coalescedPlayerGameWins,
+            [index]: wihResetVal
+        })
+    }, [coalescedPlayerGameWins, updatePlayerWins])
 
     return (<div className={`player-match-controls ${props.position}`}>
         <div className={'game-win-indicators'}>
             {coalescedPlayerGameWins?.map((pw, index) =>
-                <button>{pw === null ? `G${index + 1}` : pw === props.player.id ? `W${index + 1}` : `L${index + 1}`}</button>)}
+                <button
+                    onClick={() => onClicky(index, props.player.id)}>
+                    {pw === 'unplayed' ? `G${index + 1}` : pw === props.player.id ? `W${index + 1}` : `L${index + 1}`}
+                </button>)}
         </div>
     </div>)
 }

@@ -22,7 +22,7 @@ type MatchDataReferences = {
 
 type MatchDataKey = keyof MatchDataReferences;
 export type MatchDataPlayerKey = "player1" | "player2";
-export type PlayerGameWin = MatchDataKey | null;
+export type PlayerGameWin = MatchDataPlayerKey | 'unplayed';
 
 type MatchDataAction =
     | { type: 'SET_PLAYER_DATA'; payload: { key: MatchDataKey; data: Player } }
@@ -82,6 +82,14 @@ export const useMatchData = () => {
         set(matchDataRefs[playerId.id], neValueFn(matchData[playerId.id]!));
     }, [db, matchData, matchDataRefs]);
 
+    const updatePlayerWins = useCallback((newValue: PlayerGameWin[]) => {
+        if (!db || !matchDataRefs || !matchDataRefs.playerGameWins) {
+            return;
+        }
+
+        set(matchDataRefs.playerGameWins, newValue);
+    }, [db, matchDataRefs]);
+
     const resetLifeTotals = useCallback(() => {
         if (!matchData.player1 || !matchData.player2) {
             return;
@@ -130,5 +138,5 @@ export const useMatchData = () => {
         };
     }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot]);
 
-    return {matchData, updatePlayer, resetLifeTotals};
+    return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals};
 };
