@@ -1,0 +1,70 @@
+
+.player {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+}
+
+.player-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1rem;
+}
+
+.player-left {
+    /*background: dodgerblue;*/
+    transform: scale(-1, -1);
+}
+
+.player-right {
+    /*background: brown;*/
+}
+
+.life {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+
+.life-number {
+    font-size: 10rem;
+    padding-top: 20%;
+}
+
+.control {
+    font-size: 8rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.control-sm {
+    font-size: 6rem;
+}
+
+button {
+    background: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    text-align: center;
+    height: 100%;
+    width: 60px;
+}
+
+.name {
+    text-transform: uppercase;
+    font-size: 2rem;
+}

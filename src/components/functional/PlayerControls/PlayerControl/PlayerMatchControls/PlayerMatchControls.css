@@ -1,0 +1,40 @@
+
+.player-match-controls {
+    font-size: 1rem;
+    display: flex;
+    width: 100%;
+}
+
+.player-match-controls.left {
+
+}
+
+.player-match-controls.right {
+
+}
+
+.game-win-indicators {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.game-win-indicators > button {
+    padding: 5px 8px;
+    height: 34px;
+    border: 1px solid white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-win-indicators > button.win {
+}
+
+.game-win-indicators > button.loss {
+}
+
