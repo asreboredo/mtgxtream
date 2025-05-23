@@ -32,7 +32,7 @@ function PlayerControls() {
                     style={{height: 80, display: 'flex', alignItems: 'center', padding: 10, justifyContent: 'center'}}>
                 <Fullscreen></Fullscreen>
             </button>
-            <div ref={ref}>
+            <div ref={ref} style={{background: 'black'}}>
                 <div className={"player-controls"}>
                     <PlayerControl player={player1} updatePlayer={updatePlayer} position={"left"}></PlayerControl>
                     <ResetButton></ResetButton>
