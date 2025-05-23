@@ -2,6 +2,7 @@ import "./PlayerControl.css";
 import {Player} from "../../../../types/Player.ts";
 import {TopRightIndicator} from "../../../common/TopRightIndicator.tsx";
 import {TopLeftIndicator} from "../../../common/TopLeftIndicator.tsx";
+import PlayerMatchControls from "./PlayerMatchControls/PlayerMatchControls.tsx";
 
 
 const updatePlayerWins = (p: Player, change: number): Player => ({...p, wins: p.wins + change})
@@ -24,28 +25,32 @@ function PlayerControl(props: Props) {
 
     return (
         <div className={`player player-${position}`}>
-            <div className={"name"}>{player.name} {position === 'right' ? <TopRightIndicator></TopRightIndicator> :
-                <TopLeftIndicator></TopLeftIndicator>}
-            </div>
-            <div className={"wins"}>
-                <button className={"control-sm"}
-                        onClick={() => updatePlayer(player, (p) => updatePlayerWins(p, -1))}>
-                    -
-                </button>
-                <div>{player.wins}</div>
-                <button className={"control-sm"}
-                        onClick={() => updatePlayer(player, (p) => updatePlayerWins(p, 1))}>
-                    +
-                </button>
-            </div>
-            <div className={"life"}>
-                <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, -1))}>
-                    -
-                </button>
-                <div>{player.life}</div>
-                <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, 1))}>
-                    +
-                </button>
+            <PlayerMatchControls {...props}></PlayerMatchControls>
+            <div className={'player-inner'}>
+                <div className={`name ${position}`}>{player.name} {position === 'right' ?
+                    <TopRightIndicator></TopRightIndicator> :
+                    <TopLeftIndicator></TopLeftIndicator>}
+                </div>
+                <div className={"wins"}>
+                    <button className={"control-sm"}
+                            onClick={() => updatePlayer(player, (p) => updatePlayerWins(p, -1))}>
+                        -
+                    </button>
+                    <div>{player.wins}</div>
+                    <button className={"control-sm"}
+                            onClick={() => updatePlayer(player, (p) => updatePlayerWins(p, 1))}>
+                        +
+                    </button>
+                </div>
+                <div className={"life"}>
+                    <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, -1))}>
+                        -
+                    </button>
+                    <div>{player.life}</div>
+                    <button className={"control"} onClick={() => updatePlayer(player, (p) => updatePlayerLife(p, 1))}>
+                        +
+                    </button>
+                </div>
             </div>
 
         </div>

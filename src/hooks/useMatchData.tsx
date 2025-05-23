@@ -38,6 +38,10 @@ const matchDataReducer = (state: MatchDataState, action: MatchDataAction): Match
     }
 };
 
+const resetLife = (p: Player) => {
+    return {...p, life: 20};
+}
+
 export const useMatchData = () => {
     const {db} = useFirebaseAppContext();
     const [matchData, dispatch] = useReducer(matchDataReducer, {});
@@ -64,6 +68,17 @@ export const useMatchData = () => {
 
         set(matchDataRefs[playerId.id], neValueFn(matchData[playerId.id]!));
     }, [db, matchData, matchDataRefs]);
+
+    const resetLifeTotals = useCallback(() => {
+        if (!matchData.player1 || !matchData.player2) {
+            return;
+        }
+
+        updatePlayer(matchData.player1, resetLife);
+        updatePlayer(matchData.player2, resetLife);
+
+    }, [matchData.player1, matchData.player2, updatePlayer])
+
 
     useEffect(() => {
         if (!db) {
@@ -98,5 +113,5 @@ export const useMatchData = () => {
         };
     }, [matchDataRefs, onPlayerSnapshot, onRoundSnapshot]);
 
-    return {matchData, updatePlayer};
+    return {matchData, updatePlayer, resetLifeTotals};
 };

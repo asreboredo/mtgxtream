@@ -9,13 +9,23 @@
     gap: 2rem;
 }
 
+.player-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+}
+
 .player-left {
-    background: cornflowerblue;
+    /*background: dodgerblue;*/
     transform: scale(-1, -1);
 }
 
 .player-right {
-    background: brown;
+    /*background: brown;*/
 }
 
 .wins {
