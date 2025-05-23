@@ -22,11 +22,12 @@ type MatchDataReferences = {
 
 type MatchDataKey = keyof MatchDataReferences;
 export type MatchDataPlayerKey = "player1" | "player2";
+export type PlayerGameWin = MatchDataKey | null;
 
 type MatchDataAction =
     | { type: 'SET_PLAYER_DATA'; payload: { key: MatchDataKey; data: Player } }
     | { type: 'SET_ROUND_DATA'; payload: string }
-    | { type: 'PLAYER_GAME_WINS'; payload: MatchDataPlayerKey[] };
+    | { type: 'PLAYER_GAME_WINS'; payload: PlayerGameWin[] };
 
 type MatchDataState = MatchData;
 

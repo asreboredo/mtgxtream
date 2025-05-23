@@ -1,7 +1,7 @@
 import {Player} from "./Player.ts";
-import {MatchDataPlayerKey} from "../hooks/useMatchData.tsx";
+import {PlayerGameWin} from "../hooks/useMatchData.tsx";
 
-type PlayerGameWins = MatchDataPlayerKey[]
+type PlayerGameWins = PlayerGameWin[]
 
 export type MatchData = {
     player1?: Player;
