@@ -9,7 +9,7 @@ import {useWakeLock} from "react-screen-wake-lock";
 
 function PlayerControls() {
     const {matchData, updatePlayer} = useMatchData();
-    const {player1, player2} = matchData;
+    const {player1, player2, timer} = matchData;
     const ref = useRef<HTMLDivElement>(null);
     const [isFullscreen, {toggleFullscreen}] = useFullscreen(ref)
     const {request, release} = useWakeLock({
@@ -48,9 +48,11 @@ function PlayerControls() {
             </button>
             <div ref={ref} style={{background: 'black'}}>
                 <div className={"player-controls"}>
-                    <PlayerControl player={player1} updatePlayer={updatePlayer} position={"left"}></PlayerControl>
+                    <PlayerControl timer={timer} player={player1} updatePlayer={updatePlayer}
+                                   position={"left"}></PlayerControl>
                     <ResetButton></ResetButton>
-                    <PlayerControl player={player2} updatePlayer={updatePlayer} position={"right"}></PlayerControl>
+                    <PlayerControl timer={timer} player={player2} updatePlayer={updatePlayer}
+                                   position={"right"}></PlayerControl>
                 </div>
             </div>
 
