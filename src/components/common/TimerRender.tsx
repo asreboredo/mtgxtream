@@ -40,7 +40,7 @@ export const TimerRender = (props: { timer: Timer }) => {
         const formattedMinutes = String(minutes).padStart(2, '0');
         const formattedSeconds = String(seconds).padStart(2, '0');
 
-        return `${ms < 0 ? '-' : ''} ${formattedMinutes}:${formattedSeconds}`;
+        return `${ms < 0 ? '-' : ''}${formattedMinutes}:${formattedSeconds}`;
     };
 
     if (!startAt) {
@@ -48,6 +48,6 @@ export const TimerRender = (props: { timer: Timer }) => {
     }
 
     return (
-        <span style={{paddingRight: remainingTimeMillis < 0 ? 10 : 0}}>{getFormattedTime(remainingTimeMillis)}</span>
+        <span>{getFormattedTime(remainingTimeMillis)}</span>
     );
 }
