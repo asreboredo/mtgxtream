@@ -4,7 +4,6 @@ import {TopRightIndicator} from "../../../common/TopRightIndicator.tsx";
 import {TopLeftIndicator} from "../../../common/TopLeftIndicator.tsx";
 import PlayerMatchControls from "./PlayerMatchControls/PlayerMatchControls.tsx";
 import {Timer} from "../../../../types/MatchData.ts";
-import {TimerRender} from "../../../common/TimerRender.tsx";
 
 
 const updatePlayerLife = (p: Player, change: number): Player => ({...p, life: p.life + change})
@@ -18,7 +17,7 @@ type Props = {
 }
 
 function PlayerControl(props: Props) {
-    const {player, updatePlayer, position, timer} = props;
+    const {player, updatePlayer, position} = props;
 
 
     if (!player) {
@@ -29,7 +28,7 @@ function PlayerControl(props: Props) {
         <div className={`player player-${position}`}>
             <PlayerMatchControls {...props}></PlayerMatchControls>
             <div className={'player-inner'}>
-                <div className={'player-controls-timer'}><TimerRender timer={timer}/></div>
+                {/*<div className={'player-controls-timer'}><TimerRender timer={timer}/></div>*/}
                 <div className={`name ${position}`}>{player.name} {position === 'right' ?
                     <TopRightIndicator></TopRightIndicator> :
                     <TopLeftIndicator></TopLeftIndicator>}
