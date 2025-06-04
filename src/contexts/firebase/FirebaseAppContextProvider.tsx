@@ -8,7 +8,11 @@ export const FirebaseAppContextProvider: FC<{ children: ReactNode }> = ({childre
     const [db, setDb] = useState<FirebaseAppContextType['db']>(null);
 
     useEffect(() => {
-        const app = initializeApp({
+        if (app) {
+            return;
+        }
+
+        const initializedApp = initializeApp({
             "apiKey": `${import.meta.env.VITE_FIREBASE_API_KEY}`,
             "authDomain": `${import.meta.env.VITE_FIREBASE_AUTH_DOMAIN}`,
             "databaseURL": `${import.meta.env.VITE_FIREBASE_DATABASE_URL}`,
@@ -17,9 +21,11 @@ export const FirebaseAppContextProvider: FC<{ children: ReactNode }> = ({childre
             "messagingSenderId": `${import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID}`,
             "appId": `${import.meta.env.VITE_FIREBASE_APP_ID}`,
         });
-        const database = getDatabase(app);
+        setApp(initializedApp);
+        const database = getDatabase(initializedApp);
         setDb(database);
-    }, []);
+    }, [app]);
+
 
     const value: FirebaseAppContextType = useMemo(() => {
         return {
