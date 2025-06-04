@@ -2,7 +2,7 @@ import {useCallback, useEffect, useReducer, useState} from "react";
 import {DatabaseReference, DataSnapshot, onValue, ref, set} from "firebase/database";
 import useFirebaseAppContext from "./useFirebaseAppContext.tsx";
 
-import {MatchData} from "../types/MatchData.ts";
+import {MatchData, Timer} from "../types/MatchData.ts";
 import {Player} from "../types/Player.ts";
 
 const MATCH_DATA_REFERENCE = 'matchData';
@@ -11,6 +11,7 @@ const MatchDataReferenceRoutes = {
     PLAYER_2: `${MATCH_DATA_REFERENCE}/player2`,
     ROUND: `${MATCH_DATA_REFERENCE}/round`,
     PLAYER_GAME_WINS: `${MATCH_DATA_REFERENCE}/playerGameWins`,
+    TIMER: `${MATCH_DATA_REFERENCE}/timer`,
 };
 
 type MatchDataReferences = {
@@ -18,6 +19,7 @@ type MatchDataReferences = {
     player2: DatabaseReference;
     round: DatabaseReference;
     playerGameWins: DatabaseReference;
+    timer: DatabaseReference;
 };
 
 type MatchDataKey = keyof MatchDataReferences;
@@ -27,7 +29,8 @@ export type PlayerGameWin = MatchDataPlayerKey | 'unplayed';
 type MatchDataAction =
     | { type: 'SET_PLAYER_DATA'; payload: { key: MatchDataKey; data: Player } }
     | { type: 'SET_ROUND_DATA'; payload: string }
-    | { type: 'PLAYER_GAME_WINS'; payload: PlayerGameWin[] };
+    | { type: 'PLAYER_GAME_WINS'; payload: PlayerGameWin[] }
+    | { type: 'TIMER'; payload: Timer };
 
 type MatchDataState = MatchData;
 
@@ -39,6 +42,8 @@ const matchDataReducer = (state: MatchDataState, action: MatchDataAction): Match
             return {...state, round: action.payload};
         case 'PLAYER_GAME_WINS':
             return {...state, playerGameWins: action.payload};
+        case 'TIMER':
+            return {...state, timer: action.payload};
         default:
             return state;
     }
@@ -71,6 +76,13 @@ export const useMatchData = () => {
         const roundData = snapshot.val();
         if (roundData) {
             dispatch({type: 'PLAYER_GAME_WINS', payload: roundData});
+        }
+    }, []);
+
+    const onTimerSnapshot = useCallback((snapshot: DataSnapshot) => {
+        const timerData = snapshot.val();
+        if (timerData) {
+            dispatch({type: 'TIMER', payload: timerData});
         }
     }, []);
 
@@ -110,11 +122,13 @@ export const useMatchData = () => {
         const p2ref = ref(db, MatchDataReferenceRoutes.PLAYER_2);
         const roundRef = ref(db, MatchDataReferenceRoutes.ROUND);
         const playerWinsRef = ref(db, MatchDataReferenceRoutes.PLAYER_GAME_WINS);
+        const timerRef = ref(db, MatchDataReferenceRoutes.TIMER);
         setMatchDataRefs({
             player1: p1ref,
             player2: p2ref,
             round: roundRef,
-            playerGameWins: playerWinsRef
+            playerGameWins: playerWinsRef,
+            timer: timerRef,
         });
     }, [db]);
 
@@ -123,20 +137,22 @@ export const useMatchData = () => {
             return;
         }
 
-        const {player1, player2, round, playerGameWins} = matchDataRefs;
+        const {player1, player2, round, playerGameWins, timer} = matchDataRefs;
 
         const unsubscribePlayer1 = onValue(player1, (snapshot) => onPlayerSnapshot("player1", snapshot));
         const unsubscribePlayer2 = onValue(player2, (snapshot) => onPlayerSnapshot("player2", snapshot));
         const unsubscribeRound = onValue(round, onRoundSnapshot);
         const unsubscribeGameWins = onValue(playerGameWins, onPlayerGameWinsSnapshot);
+        const unsubscribeTimer = onValue(timer, onTimerSnapshot);
 
         return () => {
             unsubscribePlayer1();
             unsubscribePlayer2();
             unsubscribeRound();
             unsubscribeGameWins();
+            unsubscribeTimer();
         };
-    }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot]);
+    }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot, onTimerSnapshot]);
 
     return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals};
 };

@@ -1,12 +1,13 @@
 import "./Overlay.css";
 import lemur from "../../../assets/lemur.png"
 import {useMatchData} from "../../../hooks/useMatchData.tsx";
+import {TimerRender} from "../../common/TimerRender.tsx";
 
 
 function Overlay() {
 
     const {matchData} = useMatchData()
-    const {player1, player2, round} = matchData;
+    const {player1, player2, round, timer} = matchData;
 
     if (!player1 || !player2) {
         return <>init</>
@@ -35,7 +36,7 @@ function Overlay() {
                             className={"player-wins"}>{matchData.playerGameWins?.filter(pid => pid === player1.id).length || 0}</div>
                     </div>
                     <div className={"round-timer"}>
-                        {/*<div className={"timer"}>45:54</div>*/}
+                        <div className={"timer"}><TimerRender timer={timer}/></div>
                         <div className={"round"}>{round}</div>
                     </div>
                     <div className={"player-tracking"}>
