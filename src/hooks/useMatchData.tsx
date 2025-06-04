@@ -55,7 +55,7 @@ const resetLife = (p: Player) => {
 
 export const useMatchData = () => {
     const {db} = useFirebaseAppContext();
-    const [matchData, dispatch] = useReducer(matchDataReducer, {});
+    const [matchData, dispatch] = useReducer(matchDataReducer, {} as MatchData);
     const [matchDataRefs, setMatchDataRefs] = useState<MatchDataReferences | null>(null);
 
     const onPlayerSnapshot = useCallback((playerKey: MatchDataKey, snapshot: DataSnapshot) => {
