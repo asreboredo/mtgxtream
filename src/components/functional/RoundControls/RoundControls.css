@@ -1,6 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/stillhouse');
 
-.player-controls {
+.round-controls {
     height: 100%;
     width: 100%;
     flex-grow: 1;
@@ -10,11 +10,28 @@
     justify-content: center;
     background: black;
     color: white;
-    font-size: 8rem;
+    font-size: 1rem;
     -webkit-user-select: none;
     user-select: none;
 
     text-transform: uppercase;
     font-family: 'Stillhouse', sans-serif;
     text-rendering: optimizeLegibility;
+    gap: 2em;
+}
+
+button {
+    border: 1px solid white;
+    height: 60px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+}
+
+input {
+    font-family: 'Stillhouse', sans-serif;
+    font-size: 1.2rem;
+    border: 2px solid royalblue;
 }
