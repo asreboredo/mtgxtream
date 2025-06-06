@@ -20,7 +20,7 @@
     gap: 2em;
 }
 
-button {
+.round-controls button {
     border: 1px solid white;
     height: 60px;
     width: 120px;
