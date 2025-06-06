@@ -102,6 +102,14 @@ export const useMatchData = () => {
         set(matchDataRefs.timer, newVal);
     }, [db, matchDataRefs]);
 
+    const updateRound = useCallback((round: string) => {
+        if (!db || !matchDataRefs || !matchDataRefs.round) {
+            return;
+        }
+
+        set(matchDataRefs.round, round);
+    }, [db, matchDataRefs]);
+
     const updatePlayerWins = useCallback((newValue: PlayerGameWin[]) => {
         if (!db || !matchDataRefs || !matchDataRefs.playerGameWins) {
             return;
@@ -171,5 +179,5 @@ export const useMatchData = () => {
         };
     }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot, onTimerSnapshot]);
 
-    return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals, removeTimer, startTimer};
+    return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals, removeTimer, startTimer, updateRound};
 };

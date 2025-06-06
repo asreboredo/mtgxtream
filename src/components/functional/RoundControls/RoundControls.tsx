@@ -2,7 +2,15 @@ import "./RoundControls.css";
 import {useMatchData} from "../../../hooks/useMatchData.tsx";
 
 function RoundControls() {
-    const {startTimer, removeTimer, matchData, resetLifeTotals, updatePlayerWins, updatePlayer} = useMatchData();
+    const {
+        startTimer,
+        removeTimer,
+        matchData,
+        resetLifeTotals,
+        updatePlayerWins,
+        updatePlayer,
+        updateRound
+    } = useMatchData();
     const {round, player1, player2} = matchData;
 
     if (!player1 || !player2) {
@@ -21,7 +29,7 @@ function RoundControls() {
                 </button>
             </div>
 
-            <button style={{background: 'orange'}}
+            <button style={{background: 'orange', width: 180}}
                     onClick={() => {
                         updatePlayerWins(['unplayed', 'unplayed', 'unplayed']);
                         resetLifeTotals();
@@ -30,7 +38,9 @@ function RoundControls() {
             </button>
 
             <div style={{display: 'flex', flexDirection: 'column', gap: '2px'}}>
-                Round <input name={'round'} type="text" value={round}/>
+                Round <input name={'round'} type="text" value={round} onChange={(e) => {
+                updateRound(e.target.value);
+            }}/>
             </div>
 
             <div style={{display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'space-around'}}>
