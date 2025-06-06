@@ -61,7 +61,7 @@ function Overlay() {
             <div className={"overlay-bottom"}>
                 <div className={'spacer'}>O Cascabullo</div>
                 <div className={"logo"}><img src={lemur} alt=""/></div>
-                <div className={'spacer'}></div>
+                <div className={'spacer'} style={{textAlign: 'end', marginRight: '20px'}}>Xogón</div>
             </div>
         </div>
     )
