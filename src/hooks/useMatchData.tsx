@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useReducer, useState} from "react";
-import {DatabaseReference, DataSnapshot, onValue, ref, set} from "firebase/database";
+import {DatabaseReference, DataSnapshot, onValue, ref, serverTimestamp, set} from "firebase/database";
 import useFirebaseAppContext from "./useFirebaseAppContext.tsx";
 
 import {MatchData, Timer} from "../types/MatchData.ts";
@@ -94,6 +94,14 @@ export const useMatchData = () => {
         set(matchDataRefs[playerId.id], neValueFn(matchData[playerId.id]!));
     }, [db, matchData, matchDataRefs]);
 
+    const updateTimer = useCallback((newVal: Timer) => {
+        if (!db || !matchDataRefs || !matchDataRefs.timer) {
+            return;
+        }
+
+        set(matchDataRefs.timer, newVal);
+    }, [db, matchDataRefs]);
+
     const updatePlayerWins = useCallback((newValue: PlayerGameWin[]) => {
         if (!db || !matchDataRefs || !matchDataRefs.playerGameWins) {
             return;
@@ -111,6 +119,15 @@ export const useMatchData = () => {
         updatePlayer(matchData.player2, resetLife);
 
     }, [matchData.player1, matchData.player2, updatePlayer])
+
+    const removeTimer = useCallback(() => {
+        updateTimer({...matchData.timer, startAt: ''});
+    }, [matchData.timer, updateTimer]);
+
+    const startTimer = useCallback(() => {
+        // @ts-expect-error bindings
+        updateTimer({...matchData.timer, startAt: serverTimestamp()});
+    }, [matchData.timer, updateTimer]);
 
 
     useEffect(() => {
@@ -154,5 +171,5 @@ export const useMatchData = () => {
         };
     }, [matchDataRefs, onPlayerGameWinsSnapshot, onPlayerSnapshot, onRoundSnapshot, onTimerSnapshot]);
 
-    return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals};
+    return {matchData, updatePlayer, updatePlayerWins, resetLifeTotals, removeTimer, startTimer};
 };

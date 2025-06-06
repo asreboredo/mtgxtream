@@ -1,0 +1,83 @@
+
+.player {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 2rem;
+}
+
+.player-inner {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 1rem;
+}
+
+.player-left {
+    /*background: dodgerblue;*/
+    transform: scale(-1, -1);
+}
+
+.player-right {
+    /*background: brown;*/
+}
+
+.life {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+
+.life-number {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+    padding-top: 20%;
+}
+
+.fill {
+    height: 40%;
+}
+
+.control {
+    font-size: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.control-sm {
+    font-size: 6rem;
+}
+
+button {
+    background: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    text-align: center;
+    height: 100%;
+    width: 60px;
+}
+
+.name {
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+.player-controls-timer {
+    font-size: 18px;
+}

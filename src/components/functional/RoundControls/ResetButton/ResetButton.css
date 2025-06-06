@@ -1,0 +1,29 @@
+.reset-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    font-size: 18px;
+    gap: 1em;
+}
+
+.reset-button {
+    display: flex;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.inverse {
+    transform: scale(-1, -1);
+}
+
+.controls-timer {
+    width: 3em;
+}

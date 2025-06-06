@@ -4,7 +4,7 @@ import {PlayerGameWin} from "../hooks/useMatchData.tsx";
 type PlayerGameWins = PlayerGameWin[]
 export type Timer = {
     minutes: number;
-    startAt?: number;
+    startAt?: number | string;
 }
 
 export type MatchData = {

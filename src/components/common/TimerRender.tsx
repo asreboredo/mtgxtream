@@ -7,7 +7,7 @@ export const TimerRender = (props: { timer: Timer }) => {
         minutes, startAt
     } = timer;
 
-    const startDate = useMemo(() => new Date((startAt || 0) * 1000), [startAt]);
+    const startDate = useMemo(() => new Date((startAt || 0)), [startAt]);
 
 
     const [remainingTimeMillis, setRemainingTimeMillis] = useState(0);
