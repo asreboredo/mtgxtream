@@ -36,7 +36,7 @@ function Overlay() {
                             className={"player-wins"}>{matchData.playerGameWins?.filter(pid => pid === player1.id).length || 0}</div>
                     </div>
                     <div className={"round-timer"}>
-                        <div className={"timer"}><TimerRender timer={timer}/></div>
+                        <div className={"timer"}>{timer ? <TimerRender timer={timer}/> : '--:--'}</div>
                         <div className={"round"}>{round}</div>
                     </div>
                     <div className={"player-tracking"}>

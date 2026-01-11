@@ -22,7 +22,7 @@ function RoundControls() {
 
             <div style={{display: 'flex', flexDirection: 'row', gap: '30px'}}>
                 <button style={{background: 'blue'}} onClick={startTimer}>
-                    START TIMER
+                    START temporizador
                 </button>
                 <button style={{background: 'red'}} onClick={removeTimer}>
                     REMOVE TIMER
